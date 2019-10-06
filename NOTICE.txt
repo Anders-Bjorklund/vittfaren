@@ -1,0 +1,35 @@
+Project: Vittfaren
+
+Goal: To create a single-threaded, easy to use, general purpose,
+  read-through, write-through cache with write optimizations and
+  value-generations.
+  
+[ X ] The cache should hide details about how values are fetched. Users should
+      make the same type of call to get values, regardless if in cache or not.
+      It should only be necessary for the person implementing the cache to
+      know how to fetch a value, be that from disc, DB or over the network.
+
+[ X ] The cache will prevent unnecessary writes by comparing a previously
+      stored value with the new value. Value-classes in need of this, must
+      override the default hashCode-method ( or if not needed elsewhere ) 
+      override the default toString()-method, which.
+   
+[   ] The cache may prevent unnecessary writes by allowing for a a user-defined
+      time-before-write restriction, allowing a cached value to be updated any
+      number of times before being written to disc, DB or network.
+      
+[   ] The cache will allow automatic purgeing of values exceeding a
+      user-defined time-to-live value.
+  
+[   ] The cache should be able to perform a complete and instantaneous refresh
+      of all values without interrupting production a.k.a. value-generations.
+      Such a refresh will take place after sufficient time has been given for
+      the cache to reload values, starting with the keys most in demand. A 
+      get-performance degradation is to be expected during the reload.
+  
+[ / ] Although Vittfaren is single-threaded, any number of external threads
+      simultaneously calling the cache to get the same key, must result in
+      funnel behavior / one single read from disc, DB or network if the value
+      is not already cached.
+ 
+Anders Björklund, Kungsängen ( north of Stockholm ) / Sweden, 2019.
