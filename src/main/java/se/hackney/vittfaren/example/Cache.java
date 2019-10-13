@@ -32,10 +32,13 @@ public class Cache {
 		pause();
 		Cache.orderItems.put( "key", new OrderItem() );
 		pause();
-		Cache.orderItems.get( "key" );
+		OrderItem orderItem2 = Cache.orderItems.get( "key" );
+		pause();
+		Cache.orderItems.put( "key", orderItem2 );
+		Cache.orderItems.put( "key2", orderItem2 );
 		pause();
 		
-		for( int index = 0; index < 50 ; index++ ) {
+		for( int index = 0; index < 100 ; index++ ) {
 			Cache.orderItems.hit();
 			pause();
 		}

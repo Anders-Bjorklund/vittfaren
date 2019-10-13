@@ -15,7 +15,7 @@ public class OrderItemStore extends Store {
 	}
 	
 	public void put( String key, OrderItem item ) {
-		logger.debug( "[ SAVING TO DISC ]" );
+		logger.debug( "[ SAVING TO DISC - KEY = \"{}\". HASH = \"{}\" ]", key, item.hashCode() );
 	}
 	
 }

@@ -16,6 +16,7 @@ import se.hackney.vittfaren.internal.Accessor;
 import se.hackney.vittfaren.internal.todos.Purge;
 import se.hackney.vittfaren.internal.todos.Todo;
 import se.hackney.vittfaren.internal.todos.Write;
+import sun.security.x509.FreshestCRLExtension;
 
 public abstract class Store {
 	private static final Logger logger = LoggerFactory.getLogger( Store.class );
@@ -65,8 +66,8 @@ public abstract class Store {
 						}
 
 						if( method.getName().equalsIgnoreCase( "put" ) ) {
-							logger.debug( "[ PUT ]" );
 							Object freshObject = args[1];
+							logger.debug( "[ PUT - KEY = \"{}\", HASH = \"{}\" ]", key, freshObject.hashCode() );
 							accessor.set( freshObject );
 							
 							long now = new Date().getTime();
@@ -90,7 +91,7 @@ public abstract class Store {
 							Object freshObject = args[1];
 							
 							if( freshObject.hashCode() != accessor.hashCode() ) {
-								logger.debug( "[ PUT - NEW OBJECT ]" );
+								logger.debug( "[ PUT - CHANGED OBJECT - KEY = \"{}\", HASH = \"{}\" ]", key, freshObject.hashCode() );
 								accessor.set( freshObject );
 								
 								long now = new Date().getTime();
@@ -106,7 +107,7 @@ public abstract class Store {
 								}
 								
 							} else {
-								logger.debug( "[ PUT - NOOP ]" );
+								logger.debug( "[ PUT - NOOP - KEY = \"{}\", HASH = \"{}\" ]", key, freshObject.hashCode() );
 							}
 							
 						}
