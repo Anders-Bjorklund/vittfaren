@@ -102,7 +102,7 @@ public abstract class Store {
 									long writeDeadline = now + store.MIN_WAIT_BEFORE_WRITE;
 									store.todos.add( new Write( writeDeadline, proxy, obj, args, accessor ) );
 									accessor.setLastWritten( writeDeadline );
-									logger.debug( "[ WRITE - SCEDULED ]" );
+									logger.debug( "[ WRITE - SCHEDULED ]" );
 								}
 								
 							} else {
