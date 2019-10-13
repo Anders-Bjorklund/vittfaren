@@ -3,7 +3,7 @@ package se.hackney.vittfaren.internal.todos;
 public abstract class Todo implements Comparable< Object > {
 	long deadline = Long.MAX_VALUE;
 	
-	public abstract void action();
+	public abstract boolean action();
 
 	@Override
 	public int compareTo( Object arg ) {

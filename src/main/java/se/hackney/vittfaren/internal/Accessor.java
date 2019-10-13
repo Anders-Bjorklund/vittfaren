@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Accessor< T > {
 
-	private long lastRead = 0;
+	private long lastTouched = 0;
 	private long lastWritten = 0;
 	private int lastHashCode = 0;
 	
@@ -19,9 +19,10 @@ public class Accessor< T > {
 		return cachedObject;
 	}
 	
-	public Accessor set( Object freshObject ) {
+	@SuppressWarnings("unchecked")
+	public Accessor< T > set( Object freshObject ) {
 		cachedObject = ( T ) freshObject;
-		lastRead = new Date().getTime();
+		lastTouched = new Date().getTime();
 		lastHashCode = freshObject.hashCode();
 		
 		return this;
@@ -31,12 +32,16 @@ public class Accessor< T > {
 		return key;
 	}
 	
-	public long getLastRead() {
-		return lastRead;
+	public long getLastTouched() {
+		return lastTouched;
 	}
 
-	public long getLastWritten() {
+	public long getScheduledWrite() {
 		return lastWritten;
+	}
+	
+	public void setLastWritten( long time ) {
+		this.lastWritten = time;
 	}
 	
 	public int hashCode() {

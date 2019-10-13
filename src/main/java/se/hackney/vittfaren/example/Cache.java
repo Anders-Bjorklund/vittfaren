@@ -35,12 +35,17 @@ public class Cache {
 		Cache.orderItems.get( "key" );
 		pause();
 		
+		for( int index = 0; index < 50 ; index++ ) {
+			Cache.orderItems.hit();
+			pause();
+		}
+		
 	}
 	
 	private static void pause() {
 		
 		try {
-			Thread.sleep( 50 );
+			Thread.sleep( 100 );
 		} catch (InterruptedException e) { }
 		
 	}
