@@ -17,7 +17,7 @@ public class Cache {
 	public static void main( String[] args ) {
 		
 		Cache.general.put( "key", "value" );
-		Cache.general.get( "key" );
+		Cache.general.get( "key" ); 
 		
 		OrderItem orderItem = new OrderItem();
 		Cache.orderItems.get( "key" );
