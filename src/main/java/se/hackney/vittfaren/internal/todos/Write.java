@@ -30,6 +30,9 @@ public class Write extends Todo {
 		synchronized( accessor ) {
 			logger.debug( "[ WRITE: {} ]", accessor.getKey() );
 			try {
+				// Replace the object to save with the latest version
+				// referenced by accessor. 
+				args[1] = accessor.get();
 				proxy.invokeSuper( object, args );
 				return true;
 				

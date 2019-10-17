@@ -16,7 +16,6 @@ import se.hackney.vittfaren.internal.Accessor;
 import se.hackney.vittfaren.internal.todos.Purge;
 import se.hackney.vittfaren.internal.todos.Todo;
 import se.hackney.vittfaren.internal.todos.Write;
-import sun.security.x509.FreshestCRLExtension;
 
 public abstract class Store {
 	private static final Logger logger = LoggerFactory.getLogger( Store.class );
